@@ -11,12 +11,25 @@ def calc_wrapping_paper(l, w, h):
     slack = min(l, w, h)
     return 2*l+2*w+2*h+slack
 
+# find the small and medium numbers
+def smallest(a, b, c):
+    if a < b:
+        if a < c:
+            return a, min(b, c)
+        else:
+            return c, min(a, b)
+    else:
+        if b < c:
+            return b, min(a, c)
+        else:
+            return c, min(a, b)
+
 
 def calc_ribbon(l, w, h):
-    l, w, h = l+w, w+h, h+l
+    sm, md = smallest(l, w, h)
+    wrap = 2*sm + 2*md
     bow = l*w*h
-    ribbon = 2*min(l, w, h)
-    return ribbon+bow
+    return wrap + bow
 
 
 def part_one():
@@ -36,3 +49,4 @@ def part_two():
 
 
 part_one()
+part_two()
